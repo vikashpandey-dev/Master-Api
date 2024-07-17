@@ -14,6 +14,7 @@ export default class BlogService {
   ) {}
   public async create(request: any): Promise<{ record }> {
     let data;
+    console.log(request.body,"requestrequest")
     try {
         data=await this.BlogModel.create({
             ...request.body

@@ -7,7 +7,7 @@ import { ParsedQs } from 'qs';
 @Service()
 export default class sizeService {
   constructor(
-    
+
     @Inject('sizeModel') private sizeModel,
     @Inject('logger') private logger,
     @Inject('throwError') private throwError,
@@ -16,6 +16,8 @@ export default class sizeService {
     console.log(request.body)
     let data;
     try {
+
+
       data = await this.sizeModel.create({
         ...request.body,
       });

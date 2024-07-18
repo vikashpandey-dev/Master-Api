@@ -12,4 +12,12 @@ export default (app: Router) => {
     '/get',
     comtroller.Blog.get,
   );
+  route.post(
+    '/update',
+    comtroller.Blog.update,
+  );
+  route.post(
+    '/delete',
+    comtroller.Blog.delete,
+  );
 };

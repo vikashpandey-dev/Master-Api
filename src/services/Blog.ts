@@ -55,7 +55,7 @@ export default class BlogService {
   public async delete(request: any): Promise<{ record }> {
     let data;
     try {
-        data=await this.BlogModel.delete({_id:request.body._id})
+        data=await this.BlogModel.deleteOne({_id:request.body._id})
       return { record: data };
     } catch (e) {
       this.logger.error(e);

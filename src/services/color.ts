@@ -21,6 +21,7 @@ export default class colorService {
       return { record: data };
     } catch (e) {
       this.logger.error(e);
+      
       this.throwError(Helper.Statuscode.InternalServer,"Something Went Wrong!")
     }
   }

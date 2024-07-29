@@ -6,6 +6,11 @@ export default (app: Router) => {
   app.use('/Blog', route);
   route.post(
     '/add',
+    middlewares.FileUpload([
+      { name: 'images', maxCount: 5 },
+
+    ]),
+    middlewares.UploadtoCloud,
     comtroller.Blog.create,
   );
   route.post(
@@ -14,6 +19,11 @@ export default (app: Router) => {
   );
   route.post(
     '/update',
+    middlewares.FileUpload([
+      { name: 'images', maxCount: 5 },
+
+    ]),
+    middlewares.UploadtoCloud,
     comtroller.Blog.update,
   );
   route.post(

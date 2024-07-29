@@ -35,6 +35,9 @@ export default class BlogService {
       if(request.body.description){
         Object.assign(payload,{description:request.body.description})
       }
+      if(request.body.images){
+        Object.assign(payload,{images:request.body.images})
+      }
         data=await this.BlogModel.updateOne({_id:request.body._id},payload)
       return { record: data };
     } catch (e) {

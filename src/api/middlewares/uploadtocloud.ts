@@ -68,7 +68,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs').promises; // Use fs.promises for async/await
 
-const publicFolder = path.join(__dirname, 'public');
+// const publicFolder = path.join(__dirname, 'public');
 // console.log(publicFolder,"publicFolderpublicFolder")
 const writeToPublicFolder = async (fileBuffer, filename) => {
 let folderpath="upload"

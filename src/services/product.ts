@@ -44,7 +44,7 @@ export default class ProductService {
                   $expr: {
                     $and: [
                       {
-                        $in: ['$_id', '$$localFilterIds'],
+                        $in:{'$_id':'$$localFilterIds'},
                       },
                       {
                         $eq: ['$isDeleted', false],

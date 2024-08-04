@@ -18,19 +18,10 @@ const BlogSchema = new mongoose.Schema(
       default: false,
     },
     createdAt: { type: Date, default: Date.now },
-    createdBy: [
-      {
-        type: Date,
-        default: Date.now,
-      },
-      {
-        user: {
-          type: String,
-        },
-      },
-    ],
+    createdBy: {  
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user',
   },
-  { timestamps: true },
-);
+});
 
 export default mongoose.model<IUser & mongoose.Document>('Blog', BlogSchema);

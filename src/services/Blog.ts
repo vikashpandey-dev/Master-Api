@@ -48,7 +48,19 @@ export default class BlogService {
   public async get(request: any): Promise<{ record }> {
     let data;
     try {
-        data=await this.BlogModel.find()
+       data = await this.BlogModel.aggregate([
+        {
+          $lookup: {
+            from: 'users', 
+            localField: 'createdBy', 
+            foreignField: '_id', 
+            as: 'users', 
+          },
+        },
+        {
+          $unwind: '$users', // Deconstruct the users array field to output a document for each element
+        },
+      ]);
       return { record: data };
     } catch (e) {
       this.logger.error(e);

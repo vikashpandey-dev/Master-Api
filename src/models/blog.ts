@@ -12,7 +12,15 @@ const BlogSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-
+    reason:{
+      type: String,
+    },
+    status: {
+    
+      type: String,  
+      enum: ["Pending", "Accept", "Rejected"],  
+      default: "Pending",
+    },
     isDeleted: {
       type: Boolean,
       default: false,

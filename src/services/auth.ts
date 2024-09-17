@@ -28,7 +28,6 @@ export default class AuthService {
     let data;
     const salt = randomBytes(32);
     mobile = await this.userModel.find({ mobile: request.body.mobile });
-    console.log(mobile, 'mobilemobilemobilemobilemobile');
     if (mobile.length > 0) {
       this.throwError(Helper.Statuscode.AllReadyExists, 'User Allready Register With Us!');
     }
@@ -44,7 +43,7 @@ export default class AuthService {
 
     return { user: data };
   }
-  public async SignIn(request: any): Promise<{ user: IUser }> {
+  public async SignIn(request: any,res: any): Promise<{ user: IUser }> {
     console.log(request, 'datadatadatadata');
     let data;
     const userRecord = await this.userModel.findOne({ mobile: request.mobile });
@@ -71,7 +70,8 @@ export default class AuthService {
        */
       return { user: data };
     } else {
-      throw new Error('Invalid Password');
+      console.log("creaddd")
+      this.throwError(Helper.Statuscode.Forbiden, 'User Not Register With Us!');
     }
   }
 
@@ -102,13 +102,25 @@ export default class AuthService {
       this.logger.error(e);
     }
   }
+  public async alluser(request: any): Promise<{ user: IUser }> {
+    let data;
+
+    try {
+      data = await this.userModel.find({role:"user"});
+      console.log(data, 'datadatadata');
+      return { user: data };
+    } catch (e) {
+      this.logger.error(e);
+    }
+  }
   public async updateProfile(request: any): Promise<{ user: IUser }> {
     let data;
     try {
       let payload = {}
       if (request.profile)
         Object.assign(payload, { image: request.profile })
-      data = await this.userModel.updateOne({ _id: request.id },payload)
+       await this.userModel.updateOne({ _id: request._id },payload)
+      data = await this.userModel.findOne({ _id:request._id })
       return { user: data };
     } catch (e) {
       this.logger.error(e);

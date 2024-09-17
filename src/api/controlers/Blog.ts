@@ -48,5 +48,17 @@ class Blog {
       return next(e);
     }
   };
+  dashboard = async (req: Request, res: Response, next: NextFunction) => {
+    const logger: Logger = Container.get('logger');
+    try {
+      const BlogInstance = Container.get(BlogService);
+      const { record } = await BlogInstance.dashboard(req);
+      return res.json({ record }).status(200);
+    } catch (e) {
+      logger.error('🔥 error: %o', e);
+      return next(e);
+    }
+  };
+  
 }
 export default new Blog();

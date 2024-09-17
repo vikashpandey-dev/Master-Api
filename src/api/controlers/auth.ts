@@ -67,6 +67,19 @@ class auth {
       return next(e);
     }
   };
+  alluser= async (req: Request, res: Response, next: NextFunction) => {
+    const logger: Logger = Container.get('logger');
+    logger.debug('Calling Sign-In endpoint with body: %o', req.body);
+    try {
+      const {} = req.body;
+      const authServiceInstance = Container.get(AuthService);
+      const { user } = await authServiceInstance.alluser(req.body);
+      return res.json({ user }).status(200);
+    } catch (e) {
+      logger.error('🔥 error: %o', e);
+      return next(e);
+    }
+  };
   updateProfile= async (req: Request, res: Response, next: NextFunction) => {
     const logger: Logger = Container.get('logger');
     logger.debug('Calling Sign-In endpoint with body: %o', req.body);

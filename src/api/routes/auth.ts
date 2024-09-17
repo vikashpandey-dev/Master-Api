@@ -32,6 +32,10 @@ export default (app: Router) => {
     comtroller.auth.users
   );
   route.post(
+    '/alluser',
+    comtroller.auth.alluser
+  );
+  route.post(
     '/updateProfile',
     middlewares.FileUpload([
       { name: 'profile', maxCount: 1 }

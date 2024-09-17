@@ -7,7 +7,7 @@ export default (app: Router) => {
   route.post(
     '/add',
     middlewares.FileUpload([
-      { name: 'images', maxCount: 5 },
+      { name: 'images', maxCount: 1 },
 
     ]),
     middlewares.UploadtoCloud,
@@ -29,5 +29,9 @@ export default (app: Router) => {
   route.post(
     '/delete',
     comtroller.Blog.delete,
+  );
+  route.post(
+    '/dashboard',
+    comtroller.Blog.dashboard,
   );
 };
